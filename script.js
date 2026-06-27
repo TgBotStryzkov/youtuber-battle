@@ -151,39 +151,43 @@ function showResult() {
   showRating();
 }
 
-function addVote(name) {
-  let rating = JSON.parse(localStorage.getItem("bloggerRating")) || {};
+async function addVote(name) {
+  const { error } = await supabaseClient.rpc("increment_vote", {
+    blogger_name: name
+  });
 
-  if (!rating[name]) {
-    rating[name] = 0;
+  if (error) {
+    console.error("Ошибка при голосовании:", error);
   }
-
-  rating[name]++;
-
-  localStorage.setItem("bloggerRating", JSON.stringify(rating));
 }
 
-function showRating() {
-  let rating = JSON.parse(localStorage.getItem("bloggerRating")) || {};
+async function showRating() {
+  const { data, error } = await supabaseClient
+    .from("blogger_votes")
+    .select("*")
+    .order("votes", { ascending: false });
+
+  if (error) {
+    console.error("Ошибка загрузки рейтинга:", error);
+    ratingList.innerHTML = "<p>Ошибка загрузки рейтинга</p>";
+    return;
+  }
 
   ratingList.innerHTML = "";
 
-  const sortedRating = Object.entries(rating).sort((a, b) => b[1] - a[1]);
+  const filteredData = data.filter(item => item.votes > 0);
 
-  if (sortedRating.length === 0) {
+  if (filteredData.length === 0) {
     ratingList.innerHTML = "<p>Пока голосов нет</p>";
     return;
   }
 
-  sortedRating.forEach((item, position) => {
-    const name = item[0];
-    const votes = item[1];
-
+  filteredData.forEach((item, position) => {
     const div = document.createElement("div");
     div.className = "rating-item";
     div.innerHTML = `
-      <span>${position + 1}. ${name}</span>
-      <span>${votes} голосов</span>
+      <span>${position + 1}. ${item.name}</span>
+      <span>${item.votes} голосов</span>
     `;
 
     ratingList.appendChild(div);
