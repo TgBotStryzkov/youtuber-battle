@@ -123,10 +123,10 @@ function showBattle() {
   rightImage.src = currentOpponent.image;
 }
 
-function chooseWinner(winner) {
+async function chooseWinner(winner) {
   currentWinner = winner;
 
-  addVote(winner.name);
+  await addVote(winner.name);
 
   if (index >= shuffledBloggers.length) {
     showResult();
