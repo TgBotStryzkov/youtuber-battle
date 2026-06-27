@@ -160,20 +160,54 @@ body {
 }
 
 @media (max-width: 800px) {
+  .page {
+    padding: 20px 8px;
+  }
+
+  .hero {
+    margin-bottom: 20px;
+  }
+
   .hero h1 {
-    font-size: 28px;
+    font-size: 26px;
+  }
+
+  .hero p {
+    font-size: 15px;
   }
 
   .cards {
-    flex-direction: column;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
   }
 
   .card {
-    width: 100%;
-    max-width: 350px;
+    width: 44%;
+    min-height: 260px;
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .card img {
+    height: 170px;
+    border-radius: 12px;
+  }
+
+  .card h2 {
+    font-size: 17px;
+    margin-top: 10px;
   }
 
   .vs {
-    font-size: 26px;
+    font-size: 20px;
+    min-width: 28px;
+    text-align: center;
+  }
+
+  .rating {
+    margin-top: 25px;
+    padding: 18px;
   }
 }
