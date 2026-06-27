@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кто лучший ютубер 2026?</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="page">
+
+    <section class="hero">
+      <h1>Кто лучший ютубер 2026?</h1>
+      <p>Выбирай одного из двух. Победитель идёт дальше.</p>
+    </section>
+
+    <section class="battle" id="battleBlock">
+
+      <div class="round-info">
+        <span id="roundText">Раунд 1</span>
+      </div>
+
+      <div class="cards">
+
+        <button class="card" id="leftCard">
+          <img id="leftImage" src="" alt="Первый блогер" />
+          <h2 id="leftName">Блогер 1</h2>
+        </button>
+
+        <div class="vs">VS</div>
+
+        <button class="card" id="rightCard">
+          <img id="rightImage" src="" alt="Второй блогер" />
+          <h2 id="rightName">Блогер 2</h2>
+        </button>
+
+      </div>
+
+    </section>
+
+    <section class="result hidden" id="resultBlock">
+      <h2>Твой победитель:</h2>
+      <img id="winnerImage" src="" alt="Победитель" />
+      <h1 id="winnerName">Имя победителя</h1>
+
+      <button id="restartBtn">Пройти ещё раз</button>
+      <button id="shareBtn">Скопировать ссылку</button>
+    </section>
+
+    <section class="rating">
+      <h2>Общий рейтинг</h2>
+      <div id="ratingList"></div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
